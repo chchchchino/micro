@@ -18,7 +18,7 @@ public class Borrower {
     public int getBorrowerId() {
         return borrowerId;
     }
-    public void setBorrowerId(int student_id) {
+    public void setBorrowerId(int borrowerId) {
         this.borrowerId = borrowerId;
     }
     public String getBorrowerName() {

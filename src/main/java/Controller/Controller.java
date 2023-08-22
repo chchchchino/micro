@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,32 +23,32 @@ public class Controller {
     @Autowired
     private BorrowerService borrowerservice;
 
-    @PostMapping("save-borrower")
+    @PostMapping("borrowers")
     public boolean saveBorrower(@RequestBody Borrower borrower) {
         return borrowerservice.saveBorrower(borrower);
 
     }
 
-    @GetMapping("borrower-list")
+    @GetMapping("borrowers")
     public List<Borrower> allborrowers() {
         return borrowerservice.getBorrowers();
 
     }
 
-    @DeleteMapping("delete-borrower/{borrowerId}")
+    @DeleteMapping("borrowers/{borrowerId}")
     public boolean deleteBorrower(@PathVariable("borrowerId") int borrowerId, Borrower borrower) {
         borrower.setBorrowerId(borrowerId);
         return borrowerservice.deleteBorrower(borrower);
     }
 
-    @GetMapping("borrower/{borrowerId}")
+    @GetMapping("borrowers/{borrowerId}")
     public List<Borrower> allBorrowersById(@PathVariable("borrowerId") int borrowerId,Borrower borrower) {
         borrower.setBorrowerId(borrowerId);
         return borrowerservice.getBorrowerById(borrower);
 
     }
 
-    @PostMapping("update-borrower/{borrowerId}")
+    @PutMapping("borrowers/{borrowerId}")
     public boolean updateBorrower(@RequestBody Borrower borrower,@PathVariable("borrowerId") int borrowerId) {
         borrower.setBorrowerId(borrowerId);
         return borrowerservice.updateBorrower(borrower);

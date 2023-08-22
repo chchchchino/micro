@@ -71,9 +71,18 @@ public class Config {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(DB_DRIVER);
-        dataSource.setUrl(DB_URL);
-        dataSource.setUsername(DB_USERNAME);
-        dataSource.setPassword(DB_PASSWORD);
+
+        if(System.getenv("MICRO_DB_URL") != null && !System.getenv("MICRO_DB_URL").equals("")){
+            dataSource.setUrl(System.getenv("MICRO_DB_URL"));
+            dataSource.setUsername(System.getenv("MICRO_DB_USERNAME"));
+            dataSource.setPassword(System.getenv("MICRO_DB_PASSWORD"));
+        }
+        else{
+            dataSource.setUrl(DB_URL);
+            dataSource.setUsername(DB_USERNAME);
+            dataSource.setPassword(DB_PASSWORD);
+        }
+
         return dataSource;
     }
 
